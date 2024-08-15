@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights Financeiros</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #4CAF50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .insights-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+        }
+        .insight {
+            margin-bottom: 15px;
+        }
+        .insight h2 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        .insight p {
+            margin: 0;
+            font-size: 1.1em;
+        }
+        .categorias {
+            margin-top: 20px;
+        }
+        .categorias h2 {
+            margin-bottom: 10px;
+        }
+        .categoria-item {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Insights Financeiros</h1>
+
+    <div class="insights-container">
+        <div class="insight">
+            <h2>Total de Receitas:</h2>
+            <p>R$ {{ total_receitas }}</p>
+        </div>
+
+        <div class="insight">
+            <h2>Total de Despesas:</h2>
+            <p>R$ {{ total_despesas }}</p>
+        </div>
+
+        <div class="insight">
+            <h2>Saldo Atual:</h2>
+            <p>R$ {{ saldo_atual }}</p>
+        </div>
+
+        <div class="insight categorias">
+            <h2>Categorias mais Gastas:</h2>
+            {% for categoria in categorias_despesas %}
+                <div class="categoria-item">
+                    <p>{{ categoria.categoria__nome }}: R$ {{ categoria.total }}</p>
+                </div>
+            {% empty %}
+                <p>Sem despesas registradas.</p>
+            {% endfor %}
+        </div>
+
+        <div class="insight">
+            <h2>Média Mensal de Gastos:</h2>
+            <p>R$ {{ media_mensal }}</p>
+        </div>
+    </div>
+</body>
+</html>
